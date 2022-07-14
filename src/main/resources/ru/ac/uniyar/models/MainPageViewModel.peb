@@ -1,0 +1,22 @@
+{% extends "./layout.peb" %}
+
+{% block content %}
+    <h2>Книга рецептов</h2>
+    <div class="callout">
+      <p><b>Количество рецептов на сайте:</b><span class="badge">{{model.mainPageInfo.totalRecipeCount}}</span></p>
+    </div>
+    <div class="callout">
+      <p><b>Количество рецептов, в которых используется больше 5 ингредиентов:</b><span class="badge">{{model.mainPageInfo.complexRecipeCount}}</span></p>
+    </div>
+    <div class="callout">
+      <p><b>Самый популярный ингредиент:</b> {{model.mainPageInfo.mostFrequentIngredient}}</p>
+    </div>
+    <div class="callout">
+      <p><b>О сайте:</b></p>
+        <ul>Данный сайт является хранилищем рецептов. Здесь Вы можете:
+            <li>добавить новый рецепт, используя ингредиенты, прошедшие модерацию;</li>
+            <li>если каких-то ингредиентов нет - Вы можете отправить их на рассмотрение</li>
+            <li>смотреть рецепты от разных авторов, применяя различные фильтрации (например, через страницу игредиента Вы можете увидеть список всех рецептов, в которых присутствует данный ингредиент)</li>
+        </ul>
+    </div>
+{% endblock %}

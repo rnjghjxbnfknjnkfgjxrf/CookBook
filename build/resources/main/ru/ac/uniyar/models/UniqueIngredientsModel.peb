@@ -1,0 +1,12 @@
+{% extends "./layout.peb" %}
+{% block content %}
+<h3>Список уникальных ингредиентов:</h3>
+{% for ingredient in model.uniqueIngredients %}
+    <div>
+        {{ingredient.index + 1}}: {{ingredient.value}}
+    </div>
+{% endfor %}
+<div>
+    <a href="/cookbook/" class="button">Назад на основную страницу</a>
+</div>
+{% endblock %}

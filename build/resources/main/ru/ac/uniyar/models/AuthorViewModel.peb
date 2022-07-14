@@ -1,0 +1,26 @@
+{% import "./paginatorUtilities.peb" %}
+{% extends "./layout.peb" %}
+{% block content %}
+    <p><a href="/authors">К полному списку авторов</a></p>
+    <p><b>Псевдоним:</b> {{model.authorInfo.author.nickName}}</p>
+    <p><b>Электронный адрес:</b> {{ model.authorInfo.author.emailAddress }}</p>
+    <p style="white-space: pre-wrap"><b>Об авторе:</b> {{model.authorInfo.author.description}}</p>
+    <p>Добавлен на сайт: {{ model.authorInfo.author.uploadDate }}</p>
+    <p>Рецепты данного автора:</p>
+    {% if model.authorInfo.recipeList.values.size == 0%}
+    <p>Пусто!</p>
+    {% endif %}
+    {% if currentAuthor.id  == model.authorInfo.author.id%}
+    <div>
+        <a href="/cookbook/new" class="button">Добавить новый рецепт от Вашего имени</a>
+    </div>
+    {% endif %}
+    {% for recipe in model.authorInfo.recipeList.values %}
+            <div class="callout">
+                <p><b>{{recipe.name}}</b></p>
+                <p>{{recipe.recipeDescription}}</p>
+                <p><a href="/cookbook/{{recipe.id}}">Читать рецепт полностью</a></p>
+            </div>
+    {% endfor %}
+{{ showPagination(model.paginator, "medium-12 cell")}}
+{% endblock %}

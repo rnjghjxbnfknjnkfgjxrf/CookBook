@@ -1,0 +1,58 @@
+{% extends "./layout.peb" %}
+
+{% import "./paginatorUtilities.peb" %}
+
+{% block content %}
+    <h2>Список ингредиентов</h2>
+    <form method="GET">
+        <div class="grid-x grid-padding-x align-bottom">
+            <div class="medium-4 cell">
+                <label>Минимальные калории:
+                    <input type="number" name="fromCalories"
+                           value="{{ model.fromCalories }}">
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <label>Максимальные калории:
+                    <input type="number" name="toCalories"
+                           value="{{ model.toCalories }}">
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <input type="submit" value="Фильтровать" class="button">
+                <a href="/ingredients" class="button">Сбросить</a>
+            </div>
+        </div>
+    </form>
+    {% if permissions.ingredientCreation %}
+        <div>
+            <a href="/ingredients/new" class="button">Добавить новый ингредиент</a>
+        </div>
+    {% endif %}
+    {% if model.ingredientsList.size != 0 %}
+        {% for ingredient in model.ingredientsList %}
+            <div class="callout">
+                <p><b>{{ingredient.name}}</b></p>
+                <p><a href="/ingredients/{{ingredient.id}}">Подробнее о данном ингредиенте</a></p>
+                {% if ingredient.accepted and permissions.ingredientEdit %}
+                    <div class="button-group clear">
+                        <a href="/ingredients/{{ ingredient.id }}/edit" class="warning button">Редактировать</a>
+                        <a href="/ingredients/{{ ingredient.id }}/delete" class="alert button">Удалить</a>
+                    </div>
+                {% endif %}
+                {% if not ingredient.accepted %}
+                    <p style="opacity: 0.5">(еще не одобрен)</p>
+                    <div class="button-group clear">
+                        <a href="/ingredients/accept/{{ ingredient.id }}" class="success button">Принять</a>
+                        <a href="/ingredients/{{ ingredient.id }}/delete" class="alert button">Отклонить</a>
+                    </div>
+                {% endif %}
+
+            </div>
+        {% endfor %}
+            {% else %}
+            <p>Не найдено записей</p>
+    {% endif %}
+
+    {{ showPagination(model.paginator, "medium-12 cell")}}
+{% endblock %}

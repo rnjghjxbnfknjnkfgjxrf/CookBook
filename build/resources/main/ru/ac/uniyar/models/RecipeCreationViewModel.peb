@@ -1,0 +1,36 @@
+{% extends "./layout.peb" %}
+{% import "./errorsUtilities.peb" %}
+{% block content %}
+{{showErrors(model.form) }}
+    <form method="POST">
+      <p>Введите название рецепта:</p>
+      <input name="name" type="text"
+            value="{{ model.form.fields["name"] | first }}"
+      >
+      <p>Введите краткое описание рецепта:</p>
+      <textarea name="recipeDescription">{{ model.form.fields["recipeDescription"] | first }}</textarea>
+      <p>Введите список ингредиентов:</p>
+      {% if model.ingredientListSize > 0 %}
+          <select multiple name="ingredientId">
+            {% for ingredient in model.ingredientList %}
+              {% if model.form.fields["ingredientId"] contains ingredient.value.id.toString()%}
+                  <option name="ingredientId" selected value="{{ ingredient.value.id }}">{{ ingredient.value.name }}</option>
+                  {% else %}
+                    <option name="ingredientId" value="{{ ingredient.value.id }}">{{ ingredient.value.name }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+      {% endif %}
+      {% if model.ingredientListSize == 0 %}
+        <p><b>Список ингредиентов пуст!</b></p>
+      {% endif %}
+      <p>Введите шаги по приготовлению:</p>
+      <textarea name="cookingSteps">{{ model.form.fields["cookingSteps"] | first }}</textarea>
+      <p>Введите примерное время приготовления (в минутах):</p>
+      <input name="approximateCookingTime" type="number"
+            value="{{ model.form.fields["approximateCookingTime"] | first }}"
+      >
+      <input type="submit" value="Добавить" class="button">
+      <p><a href="/cookbook">Назад к основной странице</a></p>
+    </form>
+{% endblock %}

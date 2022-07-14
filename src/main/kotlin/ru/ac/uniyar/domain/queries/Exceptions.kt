@@ -1,0 +1,16 @@
+package ru.ac.uniyar.domain.queries
+
+class NickNameException : RuntimeException("Псевдоним не может состоять только из цифр.")
+class DescriptionException : RuntimeException("Описание не может состоять только из цифр.")
+class EmailAddressException : RuntimeException("Неверный формат электронного адреса.")
+class IngredientNameException : RuntimeException("Название ингредиента не должно содержать цирфы.")
+class CaloriesValueException : RuntimeException("Количество калорий не может быть отрицательным.")
+class CookingTimeException : RuntimeException("Время приготовление не может быть меньше или равным нулю.")
+class RecipeNameException : RuntimeException("Название рецепта не может состоять только из цифр.")
+class RecipeDescriptionException : RuntimeException("Описание рецепта не может состоять только из цифр.")
+class CookingStepsException : RuntimeException("Описание шагов приготовления не может состоять только из цифр")
+class AuthorFetchException : RuntimeException("Автор не найден")
+class IngredientFetchException : RuntimeException("Ингредиент не найден")
+class RecipeFetchException : RuntimeException("Рецепт не найден")
+class WrongAuthorPasswordException: RuntimeException("Введен неверынй пароль")
+class AuthenticationException: RuntimeException("Логин или пароль неверны")

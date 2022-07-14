@@ -1,0 +1,45 @@
+{% extends "./layout.peb" %}
+
+{% import "./paginatorUtilities.peb" %}
+
+{% block content %}
+    <h2>Список авторов</h2>
+    <form method="GET">
+        <div class="grid-x grid-padding-x align-bottom">
+            <div class="medium-4 cell">
+                <label>Минимальное количество рецептов от автора:
+                    <input type="number" name="fromRecipeCount"
+                        value="{{ model.fromRecipeCount }}">
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <label>Максимальное количество рецептов от автора:
+                    <input type="number" name="toRecipeCount"
+                        value="{{ model.toRecipeCount }}">
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <input type="submit" value="Фильтровать" class="button">
+                <a href="/authors" class="button">Сбросить</a>
+            </div>
+        </div>
+    </form>
+    {% if currentAuthor is null%}
+    <div>
+        <a href="/authors/new" class="button">Зарегистрироваться</a>
+    </div>
+    {% endif %}
+    {% if model.authorList.size == 0 %}
+        <p>Не найдено записей</p>
+    {% endif %}
+
+    {% for author in model.authorList %}
+        <div class="callout">
+            <p><b>{{author.nickName}}</b></p>
+            <p>{{author.description}}</p>
+            <p><a href="/authors/{{author.id}}">Подробнее о данном авторе</a></p>
+        </div>
+    {% endfor %}
+
+    {{ showPagination(model.paginator, "medium-12 cell")}}
+{% endblock %}

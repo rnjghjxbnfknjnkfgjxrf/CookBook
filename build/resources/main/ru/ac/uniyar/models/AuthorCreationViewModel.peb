@@ -1,0 +1,33 @@
+{% extends "./layout.peb" %}
+{% import "./errorsUtilities.peb" %}
+  {% block content %}
+  {{showErrors(model.form) }}
+        <form method="POST">
+          <p><b>Введите псевдоним автора:</b></p>
+          <input name="nickName" type="text"
+                value="{{ model.form.fields["nickName"] | first }}"
+          >
+          <p><b>Электронный адрес</b></p>
+          <input name="emailAddress" type="text"
+                value="{{ model.form.fields["emailAddress"] | first }}"
+          >
+          <div class="grid-x grid-padding-x align-bottom">
+              <div class="medium-4 cell">
+                  <label><b>Пароль:</b>
+                      <input type="password" name="passwordOne"
+                             value="{{ model.form.fields["passwordOne"]  | first }}">
+                  </label>
+              </div>
+              <div class="medium-4 cell">
+                  <label><b>Повтор пароля:</b>
+                      <input type="password" name="passwordTwo"
+                             value="{{ model.form.fields["passwordTwo"]  | first }}">
+                  </label>
+              </div>
+          </div>
+          <p><b>Об авторе:</b></p>
+          <textarea name="description">{{ model.form.fields["description"] | first }}</textarea>
+          <input type="submit" value="Добавить" class="button">
+          <p><a href="/authors">Назад к основной странице</a></p>
+        </form>
+  {% endblock %}

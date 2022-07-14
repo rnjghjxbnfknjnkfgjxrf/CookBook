@@ -1,0 +1,71 @@
+{% extends "./layout.peb" %}
+{% import "./errorsUtilities.peb" %}
+{% block content %}
+{{showErrors(model.form) }}
+<div class="callout warning">
+    <p>Редактирование рецепта</p>
+</div>
+<form method="POST">
+    <p>Введите название рецепта:</p>
+    {% if model.form.fields["name"] is not null %}
+        <input name="name" type="text"
+               value="{{ model.form.fields["name"] | first }}"
+        >
+        {% else %}
+        <input name="name" type="text"
+               value="{{ model.recipe.name }}"
+        >
+    {% endif %}
+    <p>Введите краткое описание рецепта:</p>
+    {% if model.form.fields["recipeDescription"] is not null %}
+        <textarea name="recipeDescription">{{ model.form.fields["recipeDescription"] | first }}</textarea>
+        {% else %}
+        <textarea name="recipeDescription">{{ model.recipe.recipeDescription }}</textarea>
+    {% endif %}
+    <p>Введите список ингредиентов:</p>
+    {% if model.ingredientListSize > 0 %}
+        {% if model.form.fields["ingredientId"] is not null %}
+            <select multiple name="ingredientId">
+                    {% for ingredient in model.ingredientList %}
+                        {% if model.form.fields["ingredientId"] contains ingredient.value.id.toString() %}
+                            <option name="ingredientId" selected value="{{ ingredient.value.id }}">{{ ingredient.value.name }}</option>
+                            {% else %}
+                                <option name="ingredientId"  value="{{ ingredient.value.id }}">{{ ingredient.value.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+            </select>
+            {% else %}
+            <select multiple name="ingredientId">
+                    {% for ingredient in model.ingredientList %}
+                    {% if model.recipe.ingredientList contains ingredient.value.id %}
+                        <option name="ingredientId" selected value="{{ ingredient.value.id }}">{{ ingredient.value.name }}</option>
+                        {% else %}
+                        <option name="ingredientId"  value="{{ ingredient.value.id }}">{{ ingredient.value.name }}</option>
+                    {% endif %}
+                    {% endfor %}
+            </select>
+        {% endif %}
+    {% endif %}
+    {% if model.ingredientListSize == 0 %}
+        <p><b>Список ингредиентов пуст!</b></p>
+    {% endif %}
+    <p>Введите шаги по приготовлению:</p>
+    {% if model.form.fields["cookingSteps"] is not null %}
+        <textarea name="cookingSteps">{{ model.form.fields["cookingSteps"] | first }}</textarea>
+        {% else %}
+        <textarea name="cookingSteps">{{ model.recipe.cookingSteps }}</textarea>
+    {% endif %}
+    <p>Введите примерное время приготовления (в минутах):</p>
+    {% if model.form.fields["approximateCookingTime"] is not null %}
+        <input name="approximateCookingTime" type="number"
+               value="{{ model.form.fields["approximateCookingTime"] | first }}"
+        >
+        {% else %}
+        <input name="approximateCookingTime" type="number"
+               value="{{ model.recipe.approximateCookingTime }}"
+        >
+    {% endif %}
+    <input type="submit" value="Подтвердить изменения" class="button">
+    <p><a href="/cookbook">Назад к основной странице</a></p>
+</form>
+{% endblock %}

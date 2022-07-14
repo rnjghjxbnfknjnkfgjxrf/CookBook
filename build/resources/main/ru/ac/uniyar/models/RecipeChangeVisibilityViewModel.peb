@@ -1,0 +1,24 @@
+{% extends "./layout.peb" %}
+{% block content %}
+    {% if model.recipe.hidden %}
+        <div class="callout success">
+            <p>Вы уверены, что хотите сделать этот рецепт видимым?</p>
+        </div>
+        {% else %}
+            <div class="callout alert">
+                <p>Вы уверены, что хотите скрыть этот рецепт?</p>
+            </div>
+    {% endif %}
+    <form method="POST">
+        <p><b>Название:</b> {{ model.recipe.name }}</p>
+        <p style="white-space: pre-wrap"><b>Краткое описание:</b> {{ model.recipe.recipeDescription }}</p>
+        <p><b>Автор:</b><a href="/authors/{{model.recipe.id}}"> {{ model.author.nickName }}</a></p>
+        <p>Добавлен на сайт:{{ model.recipe.uploadDate }}</p>
+        {% if model.recipe.hidden %}
+            <input type="submit" value="Сделать рецепт видимым" class="button">
+            {% else %}
+                <input type="submit" value="Скрыть рецепт" class="button">
+        {% endif %}
+        <p><a href="/cookbook">Назад к основной странице</a></p>
+    </form>
+{% endblock %}

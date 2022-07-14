@@ -1,0 +1,21 @@
+{% extends "./layout.peb" %}
+{% block content %}
+    <div>
+        <a href="/cookbook">К полному списку рецептов </a>
+        {% if currentAuthor.id == model.recipe.recipe.authorId %}
+            <a href="/cookbook/{{ model.recipe.recipe.id }}/edit" style="color: rgb(255, 178, 16)">Редактировать данный рецепт </a>
+            <a href="/cookbook/{{ model.recipe.recipe.id }}/delete" style="color: red">Удалить данный рецепт </a>
+        {% endif %}
+    </div>
+    <p><b>Название:</b> {{ model.recipe.recipe.name }}</p>
+    <p style="white-space: pre-wrap"><b>Краткое описание:</b> {{ model.recipe.recipe.recipeDescription }}</p>
+    <p><b>Список ингредиентов:</b></p>
+    {% for ingredient in model.recipe.ingredientList %}
+      <p><a href="/ingredients/{{ingredient.id}}">{{ ingredient.name }}</a></p>
+    {% endfor %}
+    <p><b>Шаги приготовления:</b></p>
+    <p style="white-space: pre-wrap">{{model.recipe.recipe.cookingSteps}}</p>
+    <p><b>Примерное время приготовления:</b> {{ model.recipe.recipe.approximateCookingTime }} минут(ы)</p>
+    <p><b>Автор:</b><a href="/authors/{{model.recipe.author.id}}"> {{ model.recipe.author.nickName }}</a></p>
+    <p>Добавлен на сайт:{{ model.recipe.recipe.uploadDate }}</p>
+{% endblock %}

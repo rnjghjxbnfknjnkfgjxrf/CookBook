@@ -1,0 +1,12 @@
+{% extends "./layout.peb" %}
+{% block content %}
+<div class="callout alert">
+    <p>Вы уверены, что хотите удалить этот рецепт?</p>
+</div>
+<form method="POST">
+    <p><b>Название рецепта:</b> {{ model.recipe.name }}</p>
+    <p style="white-space: pre-wrap"><b>Краткое описание</b> {{ model.recipe.recipeDescription }}</p>
+    <input type="submit" value="Подтвердить удаление" class="button">
+    <p><a href="/cookbook">Назад к основной странице</a></p>
+</form>
+{% endblock %}

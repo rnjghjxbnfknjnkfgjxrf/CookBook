@@ -1,0 +1,65 @@
+{% extends "./layout.peb" %}
+
+{% import "./paginatorUtilities.peb" %}
+
+{% block content %}
+
+    <h2>Список рецептов</h2>
+    <form method="GET">
+        <div class="grid-x grid-padding-x align-bottom">
+            <div class="medium-4 cell">
+                <label>Минимальное количество ингредиентов:
+                    <input type="number" name="fromIngredientCount"
+                        value="{{ model.fromIngredientCount }}">
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <label>Максимальное количество ингредиентов:
+                    <input type="number" name="toIngredientCount"
+                        value="{{ model.toIngredientCount }}">
+                </label>
+            </div>
+            <div class="medium-4 cell">
+                <input type="submit" value="Фильтровать" class="button">
+                <a href="/cookbook" class="button">Сбросить</a>
+            </div>
+        </div>
+    </form>
+    {% if permissions.recipeCreation %}
+    <div>
+        <a href="/cookbook/new" class="button">Добавить новый рецепт</a>
+    </div>
+    {% endif %}
+    {% if model.recipeList.size == 0 %}
+        <p>Не найдено записей</p>
+    {% endif %}
+
+    {% for recipe in model.recipeList %}
+        <div class="callout">
+            <p><b>{{recipe.recipe.name}}</b></p>
+            <p>{{recipe.recipe.recipeDescription}}</p>
+            <p>Автор: <a href="/authors/{{ recipe.author.id }}">{{recipe.author.nickName}}</a></p>
+            <p><a href="/cookbook/{{recipe.recipe.id }}">Читать рецепт полностью</a></p>
+            {% if permissions.recipeHide or recipe.author.id == currentAuthor.id%}
+                {% if recipe.recipe.hidden %}
+                    <p style="opacity: 0.5">(видите только Вы и администратор)</p>
+                {% endif %}
+                {% if permissions.recipeHide %}
+                    {% if recipe.recipe.hidden%}
+                        <p><a href="/cookbook/{{ recipe.recipe.id }}/change_visibility" class="success button clear">Сделать видимым</a></p>
+                        {% else %}
+                            <p><a href="/cookbook/{{ recipe.recipe.id }}/change_visibility" class="secondary button clear">Скрыть</a></p>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            {% if currentAuthor.id == recipe.recipe.authorId %}
+                <div class="button-group clear">
+                    <p><a href="/cookbook/{{ recipe.recipe.id }}/edit" class="warning button clear">Редактировать</a></p>
+                    <p><a href="/cookbook/{{ recipe.recipe.id }}/delete" class="alert button clear">Удалить</a></p>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    {{ showPagination(model.paginator, "medium-12 cell")}}
+{% endblock %}

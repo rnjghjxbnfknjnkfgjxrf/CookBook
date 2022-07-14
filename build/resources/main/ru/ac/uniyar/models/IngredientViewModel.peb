@@ -1,0 +1,23 @@
+{% import "./paginatorUtilities.peb" %}
+{% extends "./layout.peb" %}
+{% block content %}
+    <div>
+        <a href="/ingredients">К полному списку ингредиентов</a>
+        {% if permissions.ingredientEdit %}
+            <a href="/ingredients/{{ model.ingredientInfo.ingredient.id }}/edit" style="color: rgb(255, 178, 16)">Редактировать данный ингредиент</a>
+            <a href="/ingredients/{{ model.ingredientInfo.ingredient.id }}/delete" style="color: red">Удалить данный ингредиент</a>
+        {% endif %}
+    </div>
+    <p><b>Название ингредиента:</b> {{model.ingredientInfo.ingredient.name}}</p>
+    <p><b>Калорийность (кал./100г):</b> {{ model.ingredientInfo.ingredient.calories }}</p>
+    <p>Добавлен на сайт: {{ model.ingredientInfo.ingredient.uploadDate }}</p>
+    <p>Рецепты с данным ингредиентом:</p>
+    {% for recipe in model.ingredientInfo.recipeList.values %}
+            <div class="callout">
+                <p><b>{{recipe.name}}</b></p>
+                <p>{{recipe.recipeDescription}}</p>
+                <p><a href="/cookbook/{{recipe.id}}">Читать рецепт полностью</a></p>
+            </div>
+    {% endfor %}
+{{ showPagination(model.paginator, "medium-12 cell")}}
+{% endblock %}

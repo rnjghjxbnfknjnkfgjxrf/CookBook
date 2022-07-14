@@ -1,0 +1,2 @@
+[90m/home/slava/labs/CookBookSite/src/test/kotlin/ru/ac/uniyar/[0mCookBookSiteTest.kt[90m:[0m23[90m:1:[0m Trailing space(s) [90m(no-trailing-spaces)[0m
+[90m/home/slava/labs/CookBookSite/src/test/kotlin/ru/ac/uniyar/[0mCookBookSiteTest.kt[90m:[0m25[90m:1:[0m Trailing space(s) [90m(no-trailing-spaces)[0m

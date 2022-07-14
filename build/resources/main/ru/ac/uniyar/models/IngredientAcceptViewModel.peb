@@ -1,0 +1,23 @@
+{% extends "./layout.peb" %}
+{% import "./errorsUtilities.peb" %}
+{% block content %}
+{{showErrors(model.form) }}
+<form method="POST">
+    <div class="callout success">
+        <p>Принятие ингредиента</p>
+    </div>
+    <p><b>Название ингредиента:</b></p>
+    {% if model.form.fields["name"] is not null %}
+        <input name="name" type="text"
+               value="{{ model.form.fields["name"] | first}}"
+        >
+        {% else %}
+        <input name="name" type="text"
+               value="{{ model.ingredient.name }}"
+        >
+    {% endif %}
+    <p><b>Калорийность ( кал./100г):</b> {{ model.ingredient.calories }}</p>
+    <input type="submit" value="Подтвердить добавление" class="button">
+    <p><a href="/ingredients">Назад к основной странице</a></p>
+</form>
+{% endblock %}

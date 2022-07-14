@@ -1,0 +1,90 @@
+{
+  "recipe" : [ {
+    "id" : "eb0bdc6d-99d3-48a4-b0bc-541d86363ce2",
+    "author_id" : "9df41233-f541-48d8-9a5d-2bdeaac186d6",
+    "name" : "Тестовый рецепт",
+    "recipeDescription" : "Теперь с \r\nподдержкой\r\nмногострочного текста!",
+    "ingredientList" : [ "036f163c-cdec-470f-8bf7-313ec4a0e7c4", "072f5b0d-16c5-442e-a647-160b3fa3070e", "4867d36f-b30b-43be-8f62-11b71696af15", "9f5df8cf-8171-4331-a003-47d072463e1f" ],
+    "cookingSteps" : "шаги по приготовлению",
+    "approximateCookingTime" : 25,
+    "uploadDate" : "2022-05-29",
+    "hidden" : false
+  }, {
+    "id" : "0ba38beb-235e-46c2-ace5-c23f825325fd",
+    "author_id" : "9df41233-f541-48d8-9a5d-2bdeaac186d6",
+    "name" : "Секретный рецепт",
+    "recipeDescription" : "...---...",
+    "ingredientList" : [ "072f5b0d-16c5-442e-a647-160b3fa3070e", "4867d36f-b30b-43be-8f62-11b71696af15" ],
+    "cookingSteps" : "шаги по приготовлению",
+    "approximateCookingTime" : 123,
+    "uploadDate" : "2022-05-29",
+    "hidden" : true
+  } ],
+  "author" : [ {
+    "id" : "d22aa2e8-5a7f-4ccd-abfe-9ef82619ff0e",
+    "roleId" : "6b3b4b90-db6d-11ec-9d64-0242ac120002",
+    "nickName" : "admin",
+    "emailAddress" : "administration@cookbooksite.com",
+    "description" : "Password - admin",
+    "password" : "f00d21d13c67b82d689afacf604bd941fb9ae3170ebc92919570128991ab903dd8c9fef5f9c4a7ae11e03ad4e782bbdaa8c40db38615ccc3c4eb6f1e181441ba",
+    "uploadDate" : "2022-05-25"
+  }, {
+    "id" : "9df41233-f541-48d8-9a5d-2bdeaac186d6",
+    "roleId" : "08fc459c-db6d-11ec-9d64-0242ac120002",
+    "nickName" : "Tester",
+    "emailAddress" : "tester@yandex.ru",
+    "description" : "Love tests",
+    "password" : "b4712f3e9a7d8deb1caba8db3678f6718cc54e526637dfb289c6324751a96d4630d9735c57b1e7c3f81f0aa09508414fd759d54333c3ce75c1db1df84d7903da",
+    "uploadDate" : "2022-05-29"
+  } ],
+  "ingredient" : [ {
+    "id" : "16a680d8-422e-492d-a728-d090dac65e6c",
+    "name" : "Секретный ингредиент",
+    "calories" : 123,
+    "uploadDate" : "2022-05-29",
+    "accepted" : false
+  }, {
+    "id" : "036f163c-cdec-470f-8bf7-313ec4a0e7c4",
+    "name" : "Яблоко",
+    "calories" : 52,
+    "uploadDate" : "2022-05-29",
+    "accepted" : true
+  }, {
+    "id" : "072f5b0d-16c5-442e-a647-160b3fa3070e",
+    "name" : "Сахар",
+    "calories" : 387,
+    "uploadDate" : "2022-05-29",
+    "accepted" : true
+  }, {
+    "id" : "4867d36f-b30b-43be-8f62-11b71696af15",
+    "name" : "Бекон",
+    "calories" : 541,
+    "uploadDate" : "2022-05-29",
+    "accepted" : true
+  }, {
+    "id" : "9f5df8cf-8171-4331-a003-47d072463e1f",
+    "name" : "Томат",
+    "calories" : 24,
+    "uploadDate" : "2022-05-29",
+    "accepted" : true
+  } ],
+  "rolePermissions" : [ {
+    "id" : "08fc459c-db6d-11ec-9d64-0242ac120002",
+    "name" : "Автор рецептов",
+    "recipeCreation" : true,
+    "recipeEdit" : true,
+    "ingredientCreation" : true,
+    "ingredientAccept" : false,
+    "ingredientEdit" : false,
+    "recipeHide" : false
+  }, {
+    "id" : "6b3b4b90-db6d-11ec-9d64-0242ac120002",
+    "name" : "Администратор",
+    "recipeCreation" : false,
+    "recipeEdit" : false,
+    "ingredientCreation" : true,
+    "ingredientAccept" : true,
+    "ingredientEdit" : true,
+    "recipeHide" : true
+  } ]
+}

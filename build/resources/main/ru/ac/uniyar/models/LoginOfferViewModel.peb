@@ -1,0 +1,7 @@
+    {% extends "./layout.peb" %}
+    {% block content %}
+    <p><b>Недостаточно прав для выполнения данного действия!</b></p>
+    <a href="/login" class="button">Войти</a>
+    <a href="/authors/new" class="button">Зарегистрироваться</a>
+    <a href="/" class="button">Назад на основную страницу</a>
+    {% endblock %}

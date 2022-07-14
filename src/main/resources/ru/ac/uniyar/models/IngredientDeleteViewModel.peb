@@ -1,0 +1,12 @@
+{% extends "./layout.peb" %}
+{% block content %}
+<form method="POST">
+    <div class="callout alert">
+        <p>Вы уверены, что хотите удалить этот ингредиент?</p>
+    </div>
+    <p><b>Название ингредиента:</b> {{ model.ingredient.name }}</p>
+    <p><b>Калорийность ( кал./100г):</b> {{ model.ingredient.calories }}</p>
+    <input type="submit" value="Подтвердить удаление" class="button">
+    <p><a href="/ingredients">Назад к основной странице</a></p>
+</form>
+{% endblock %}

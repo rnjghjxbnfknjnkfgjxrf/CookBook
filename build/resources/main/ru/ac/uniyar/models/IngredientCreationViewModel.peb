@@ -1,0 +1,17 @@
+{% extends "./layout.peb" %}
+{% import "./errorsUtilities.peb" %}
+{% block content %}
+{{showErrors(model.form) }}
+    <form method="POST">
+      <p><b>Введите название ингредиента:</b></p>
+      <input name="name" type="text"
+            value="{{ model.form.fields["name"] | first }}"
+      >
+      <p><b>Калорийность ( кал./100г)</b></p>
+      <input name="calories" type="number"
+            value="{{ model.form.fields["calories"] | first }}"
+      >
+      <input type="submit" value="Добавить" class="button">
+      <p><a href="/ingredients">Назад к основной странице</a></p>
+    </form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% macro showErrors(webForm) %}
+    {% if webForm.errors is not empty %}
+        <div class="callout alert">
+            {% for error in webForm.errors %}
+                <p><b>{{ error }}</b></p>
+                <p>{{ error.meta.description }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endmacro %}

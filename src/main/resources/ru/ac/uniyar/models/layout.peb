@@ -1,0 +1,47 @@
+<!doctype html>
+<html class="no-js" lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Кулинарная книга{% endblock %}</title>
+    <link rel="stylesheet" href="/css/foundation.css">
+    <link rel="stylesheet" href="/css/app.css">
+  </head>
+<body>
+  <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text">Кулинарная книга</li>
+          <li><a href="/cookbook">Список рецептов</a></li>
+          <li><a href="/authors">Список авторов</a></li>
+          <li><a href="/ingredients">Список ингредиентов</a></li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+          <ul class="dropdown menu" data-dropdown-menu>
+          <li><a href="/">К главной странице</a></li>
+            {% if currentAuthor is not null %}
+                <li>
+                    <a href="/authors/{{ currentAuthor.id }}">{{ currentAuthor.nickName }}</a>
+                    <ul class="vertical menu accordion-menu">
+                        <li><a href="/logout">Выйти</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li><a href="/login">Войти</a></li>
+            {% endif %}
+          </ul>
+      </div>
+  </div>
+  <div class="grid-container">
+    {% block content %}
+      Нет содержимого
+    {% endblock %}
+  </div>
+  <script src="/js/vendor/jquery.js"></script>
+    <script src="/js/vendor/what-input.js"></script>
+    <script src="/js/vendor/foundation.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
